@@ -1,19 +1,27 @@
+import {
+  SearchbarHeader,
+  SearcForm,
+  SearchFormButton,
+  SearchFormInput,
+  SearchFormButtonLabel,
+} from './Searchbar.styled';
+
 export const Searcbar = ({ formSubmit }) => {
   return (
-    <header className="searchbar">
-      <form className="form" onSubmit={formSubmit}>
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
-        </button>
+    <SearchbarHeader className="searchbar">
+      <SearcForm className="form" onSubmit={formSubmit}>
+        <SearchFormButton type="submit" className="button">
+          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+        </SearchFormButton>
 
-        <input
+        <SearchFormInput
           autocomplete="off"
           className="input"
           type="text"
           name="query"
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </SearcForm>
+    </SearchbarHeader>
   );
 };

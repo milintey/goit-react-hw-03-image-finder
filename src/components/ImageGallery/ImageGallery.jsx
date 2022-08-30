@@ -1,8 +1,10 @@
+import { ImageGalleryUl } from './ImageGallery.styled';
+
 import { ImagesGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 
 export const ImageGallery = ({ images, toggleModal }) => {
   return (
-    <ul className="gallery">
+    <ImageGalleryUl className="gallery">
       {images.map(({ id, webformatURL, largeImageURL }) => {
         return (
           <ImagesGalleryItem
@@ -13,6 +15,6 @@ export const ImageGallery = ({ images, toggleModal }) => {
           />
         );
       })}
-    </ul>
+    </ImageGalleryUl>
   );
 };

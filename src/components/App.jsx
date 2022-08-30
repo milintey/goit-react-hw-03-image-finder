@@ -5,6 +5,8 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { axiosGet } from './AxiosGetPixabay/AxiosGetPixabay';
 import { Button } from './Button/Button';
 import { Modal } from './Modal/Modal';
+import { Loader } from './Loader/Loader';
+import { AppDiv } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -21,11 +23,16 @@ export class App extends Component {
       this.state.query !== prevState.query ||
       this.state.page !== prevState.page
     ) {
-      axiosGet(this.state.query, this.state.page).then(response =>
-        this.setState(prev => ({
-          images: [...prev.images, ...response],
-        }))
-      );
+      this.setState({ isLoading: true });
+
+      axiosGet(this.state.query, this.state.page)
+        .then(response =>
+          this.setState(prev => ({
+            images: [...prev.images, ...response],
+          }))
+        )
+        .catch(error => console.log(error))
+        .finally(() => this.setState({ isLoading: false }));
     }
   }
 
@@ -55,20 +62,24 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <AppDiv>
         <Searcbar formSubmit={this.formSubmit} />
+
         <ImageGallery
           images={this.state.images}
           toggleModal={this.toggleModal}
         />
-        {this.state.images.length !== 0 && (
+
+        {this.state.isLoading && <Loader />}
+
+        {this.state.images.length !== 0 && !this.state.isLoading && (
           <Button handleLoadMore={this.handleLoadMore} />
         )}
         {this.state.isModalOpen && (
           <Modal image={this.state.modalImage} toggleModal={this.toggleModal} />
         )}
         <GlobalStyle />
-      </div>
+      </AppDiv>
     );
   }
 }
