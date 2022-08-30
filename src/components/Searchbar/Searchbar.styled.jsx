@@ -30,7 +30,9 @@ export const SearcForm = styled.form`
 `;
 
 export const SearchFormButton = styled.button`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 48px;
   height: 48px;
   border: 0;

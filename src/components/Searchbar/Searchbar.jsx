@@ -1,17 +1,17 @@
+import { BsSearch } from 'react-icons/bs';
 import {
   SearchbarHeader,
   SearcForm,
   SearchFormButton,
   SearchFormInput,
-  SearchFormButtonLabel,
 } from './Searchbar.styled';
 
-export const Searcbar = ({ formSubmit }) => {
+export const Searcbar = ({ formSubmit, isDisabled }) => {
   return (
     <SearchbarHeader className="searchbar">
       <SearcForm className="form" onSubmit={formSubmit}>
-        <SearchFormButton type="submit" className="button">
-          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+        <SearchFormButton disabled={isDisabled} type="submit">
+          <BsSearch size={20} />
         </SearchFormButton>
 
         <SearchFormInput

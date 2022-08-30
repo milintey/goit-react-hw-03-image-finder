@@ -63,7 +63,10 @@ export class App extends Component {
   render() {
     return (
       <AppDiv>
-        <Searcbar formSubmit={this.formSubmit} />
+        <Searcbar
+          isDisabled={this.state.isLoading}
+          formSubmit={this.formSubmit}
+        />
 
         <ImageGallery
           images={this.state.images}
@@ -73,7 +76,10 @@ export class App extends Component {
         {this.state.isLoading && <Loader />}
 
         {this.state.images.length !== 0 && !this.state.isLoading && (
-          <Button handleLoadMore={this.handleLoadMore} />
+          <Button
+            isDisabled={this.state.isLoading}
+            handleLoadMore={this.handleLoadMore}
+          />
         )}
         {this.state.isModalOpen && (
           <Modal image={this.state.modalImage} toggleModal={this.toggleModal} />

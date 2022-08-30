@@ -1,8 +1,12 @@
 import { ButtonLoadMore } from './Button.styled';
 
-export const Button = ({ handleLoadMore }) => {
+export const Button = ({ handleLoadMore, isDisabled }) => {
   return (
-    <ButtonLoadMore type="button" onClick={handleLoadMore}>
+    <ButtonLoadMore
+      disabled={isDisabled}
+      type="button"
+      onClick={handleLoadMore}
+    >
       LOAD MORE
     </ButtonLoadMore>
   );
